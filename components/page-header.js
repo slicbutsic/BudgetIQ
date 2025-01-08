@@ -9,7 +9,6 @@ export default function PageHeader({className}) {
       <div className='flex items-center space-x-4'>
         <div>Mode Toggle here</div>
         <div>User Dropdown here</div>
-
       </div>
     </header>
   )
