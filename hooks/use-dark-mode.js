@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { useCookies } from 'react-cookie'
+import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+
 const useDarkMode = (defaultTheme = 'dark') => {
   const [theme, setTheme] = useState(defaultTheme)
   const [_, setCookie] = useCookies(['theme'])
