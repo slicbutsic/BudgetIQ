@@ -14,11 +14,11 @@ export default function TransactionItem({
       colours: 'text-red-600 dark:text-red-300'
     },
     'Saving': {
-      icon: Landmark,
+      icon: PiggyBank,
       colours: 'text-indigo-600 dark:text-indigo-300'
     },
     'Investment': {
-      icon: PiggyBank,
+      icon: Landmark,
       colours: 'text-yellow-600 dark:text-yellow-300'
     }
   }
