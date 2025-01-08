@@ -3,6 +3,9 @@ import TransactionItem from "@/components/transaction-item";
 import Trend from "@/components/trend";
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import Button from "@/components/button";
+import Label from "@/components/label";
+import Input from "@/components/input";
+import Select from "@/components/select";
 
 export default function Page() {
   return (
@@ -17,7 +20,6 @@ export default function Page() {
           <PageHeader />
         </div>
       </div>
-
 
       <div>
         <h2 className="mb-4 text-lg font-mono">Trend</h2>
@@ -41,9 +43,6 @@ export default function Page() {
         </div>
       </div>
 
-
-
-
       <div>
         <h2 className="mb-4 text-lg font-mono">TransactionSummaryItem + TransactionItem</h2>
         <hr className="mb-4 border-gray-200 dark:border-gray-800" />
@@ -57,45 +56,36 @@ export default function Page() {
         </div>
       </div>
 
-
-
+      {/* FORMS */}
       <div>
         <h2 className="mb-4 text-lg font-mono">Forms</h2>
         <hr className="mb-4 border-gray-200 dark:border-gray-800" />
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-gray-700 dark:text-gray-300 block mb-1">Your name</label>
-            <input type="text"
-            placeholder="John Smith"
-            className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950" />
+
+            <Label className="text-gray-700 dark:text-gray-300 block mb-1">Name</Label>
+            <Input type='text' placeholder="John Smith" />
           </div>
 
           <div>
-            <label className="text-gray-700 dark:text-gray-300 block mb-1">City</label>
-            <select
-            className="w-full rounded-md shadow-sm border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-950" >
+            <Label className="text-gray-700 dark:text-gray-300 block mb-1">City</Label>
+            <Select>
               <option>Brisbane</option>
               <option>Sydney</option>
               <option>Melbourne</option>
               <option>Perth</option>
               <option>Adelaide</option>
               <option>Hobart</option>
-            </select>
+            </Select>
           </div>
-
-
 
           <div className="flex items-center">
-            <input type="checkbox"
-            className="rounded border-gray-300 text-gray-700 bg-white dark:bg-gray-950 dark:text-gray-500 shadow-sm"/>
-            <label className="text-gray-700 dark:text-gray-300 ml-2">City</label>
+            <Input type='checkbox' id='terms' />
+            <Label className='ml-2' htmlFor='terms'>Accept terms</Label>
           </div>
-
-
 
         </div>
       </div>
-
 
     </main>
   )
