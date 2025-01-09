@@ -89,7 +89,7 @@ export default function Page() {
 
         </div>
 
-{/* creating skeleton ui */}
+        {/* creating skeleton ui */}
         <div>
           <h2 className="mb-4 text-lg font-mono">Loading Skeleton</h2>
           <Separator />
