@@ -10,7 +10,7 @@ export default function Trend({
     'Income': 'text-green-600 dark: text-green-300',
     'Expense': 'text-red-600 dark: text-red-300',
     'Investment': 'text-indigo-600 dark: text-indigo-300',
-    'Savings': 'text-yellow-600 dark: text-yellow-300',
+    'Saving': 'text-yellow-600 dark: text-yellow-300',
   }
 
   const calcPercentageChange = (amount, prevAmount) => {
@@ -29,7 +29,7 @@ export default function Trend({
       <div className={`font-semibold ${colourClasses[type]} text-2xl`}>
         {type}
       </div>
-      <div className="text-2xl font-semibold teext-black dark:text-white mb-2">
+      <div className="text-2xl font-semibold text-black dark:text-white mb-2">
         {formattedAmount}
       </div>
 

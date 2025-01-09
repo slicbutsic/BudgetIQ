@@ -1,5 +1,4 @@
 import Skeleton from "@/components/skeleton"
-// import TransactionItemSkeleton from "@/components/transaction-item-skeleton"
 
 export default function TransactionListFallback() {
   return (

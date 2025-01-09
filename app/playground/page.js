@@ -9,6 +9,10 @@ import Select from "@/components/select";
 import Separator from "@/components/separator";
 import Skeleton from "@/components/skeleton";
 
+export const metadata = {
+  title: "Playground"
+};
+
 export default function Page() {
   return (
     <main className="space-y-8 mb-44">
@@ -30,7 +34,7 @@ export default function Page() {
           <Trend type='Income' amount={1000} prevAmount={900} />
           <Trend type='Expense' amount={12000} prevAmount={10000} />
           <Trend type='Investment' amount={7000} prevAmount={11100} />
-          <Trend type='Savings' amount={500} prevAmount={950} />
+          <Trend type='Saving' amount={500} prevAmount={950} />
         </div>
       </div>
 
