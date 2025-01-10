@@ -12,6 +12,7 @@ import "flatpickr/dist/themes/dark.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { purgeTransactionListCache } from "@/lib/actions";
+import FormError from "./form-error";
 
 export default function TransactionForm() {
   const {
@@ -65,7 +66,7 @@ export default function TransactionForm() {
               <option key={type}>{type}</option>
             ))}
           </Select>
-          {errors.type && <p className="text-red-500">{errors.type.message}</p>}
+          <FormError error={errors.type} />
         </div>
 
         <div>
@@ -75,7 +76,7 @@ export default function TransactionForm() {
               <option key={category}>{category}</option>
             ))}
           </Select>
-          {errors.category && <p className="text-red-500">{errors.category.message}</p>}
+          <FormError error={errors.category} />
         </div>
 
         <div>
@@ -109,19 +110,19 @@ export default function TransactionForm() {
               />
             )}
           />
-          {errors.created_at && <p className="text-red-500">{errors.created_at.message}</p>}
+          <FormError error={errors.created_at} />
         </div>
 
         <div>
           <Label className="mb-1">Amount</Label>
           <Input type="number" {...register("amount")} />
-          {errors.amount && <p className="text-red-500">{errors.amount.message}</p>}
+          <FormError error={errors.amount} />
         </div>
 
         <div className="col-span-1 md:col-span-2">
           <Label className="mb-1">Description</Label>
           <Input {...register("description")} autoComplete="off" />
-          {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+          <FormError error={errors.description} />
         </div>
       </div>
 

@@ -63,6 +63,14 @@
       "amount": 100,
       "description": "ok",
       "created_at": "09/01/2025T00:00:00"
+    },
+    {
+      "id": "5fc6",
+      "type": "Expense",
+      "category": "Housing",
+      "amount": 2000,
+      "description": "morgage",
+      "created_at": "08/01/2025T00:00:00"
     }
   ],
   "trends": [
