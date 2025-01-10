@@ -11,7 +11,7 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/dark.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { purgeTransactionListCache } from "@/lib/actions";
+import { createTransaction, purgeTransactionListCache } from "@/lib/actions";
 import FormError from "./form-error";
 
 export default function TransactionForm() {
@@ -34,18 +34,7 @@ export default function TransactionForm() {
     console.log("Form submitted:", data);
     setSaving(true);
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
-        method: 'POST',
-        headers : {
-          'Content-Type': 'application/json'
-        },
-        // body: JSON.stringify(data)
-        body: JSON.stringify({
-          ...data,
-          created_at: `${data.created_at}T00:00:00`
-        })
-      })
-      await purgeTransactionListCache(); // Update list so user can see it updated straight away
+      await createTransaction(data); // Update list so user can see it updated straight away
       router.push('/dashboard');  // redirect
     } finally {
       setSaving(false);

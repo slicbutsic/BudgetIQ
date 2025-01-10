@@ -71,6 +71,22 @@
       "amount": 2000,
       "description": "morgage",
       "created_at": "08/01/2025T00:00:00"
+    },
+    {
+      "id": "5cdb",
+      "type": "Income",
+      "category": "Housing",
+      "amount": 1000000,
+      "description": "testttttt",
+      "created_at": "09/01/2025T00:00:00"
+    },
+    {
+      "id": "6ca7",
+      "type": "Expense",
+      "category": "Food",
+      "amount": 150,
+      "description": "Dinner",
+      "created_at": "07/01/2025T00:00:00"
     }
   ],
   "trends": [
