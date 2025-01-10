@@ -6,7 +6,7 @@ export default function PageHeader({className}) {
   const theme = useServerDarkMode()
   return (
     <header className={`flex justify-between items-center ${className}`}>
-      <Link href="/dashboard" className="text-xl hover:underline underline-offset-8 decoration-2">Wealth IQ</Link>
+      <Link href="/dashboard" className="text-xl hover:underline underline-offset-8 decoration-2">Budget IQ</Link>
 
       <div className="flex items-center space-x-4 ml-60">
         <DarkModeToggle defaultMode={theme} />
