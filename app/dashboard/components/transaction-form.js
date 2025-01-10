@@ -9,7 +9,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "@/lib/validation";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/dark.css";
-
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { purgeTransactionListCache } from "@/lib/actions";
 
 export default function TransactionForm() {
   const {
@@ -22,8 +24,31 @@ export default function TransactionForm() {
     resolver: zodResolver(transactionSchema)
   });
 
-  const onSubmit = (data) => {
+  const router = useRouter()
+
+  // CREATE - CRUD
+  const [isSaving, setSaving] = useState(false);
+
+  const onSubmit = async (data) => {
     console.log("Form submitted:", data);
+    setSaving(true);
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
+        method: 'POST',
+        headers : {
+          'Content-Type': 'application/json'
+        },
+        // body: JSON.stringify(data)
+        body: JSON.stringify({
+          ...data,
+          created_at: `${data.created_at}T00:00:00`
+        })
+      })
+      await purgeTransactionListCache(); // Update list so user can see it updated straight away
+      router.push('/dashboard');  // redirect
+    } finally {
+      setSaving(false);
+    }
   };
 
   const onError = (errors) => {
@@ -101,7 +126,7 @@ export default function TransactionForm() {
       </div>
 
       <div className="flex justify-end">
-        <Button type="submit">Save</Button>
+        <Button type="submit" disabled={isSaving}>Save</Button>
       </div>
     </form>
   );
