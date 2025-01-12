@@ -11,7 +11,7 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/dark.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createTransaction, purgeTransactionListCache } from "@/lib/actions";
+import { createTransaction } from "@/lib/actions";
 import FormError from "./form-error";
 
 export default function TransactionForm() {
@@ -29,14 +29,21 @@ export default function TransactionForm() {
 
   // CREATE - CRUD
   const [isSaving, setSaving] = useState(false);
+  const [lastError, setLastError] = useState()
 
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
     setSaving(true);
+    setLastError();
+
     try {
       await createTransaction(data); // Update list so user can see it updated straight away
       router.push('/dashboard');  // redirect
-    } finally {
+    }
+    catch (error) {
+      setLastError(error)
+    }
+    finally {
       setSaving(false);
     }
   };
@@ -115,7 +122,10 @@ export default function TransactionForm() {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center">
+        <div>
+          {lastError && <FormError error={lastError} />}
+        </div>
         <Button type="submit" disabled={isSaving}>Save</Button>
       </div>
     </form>
