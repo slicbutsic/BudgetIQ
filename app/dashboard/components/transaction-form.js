@@ -19,6 +19,8 @@ export default function TransactionForm() {
     register,
     handleSubmit,
     control,
+    watch,
+    setValue,
     formState: { errors }
   } = useForm({
     mode: "onTouched",
@@ -30,8 +32,12 @@ export default function TransactionForm() {
   // CREATE - CRUD
   const [isSaving, setSaving] = useState(false);
   const [lastError, setLastError] = useState()
+  const type = watch('type')
 
   const onSubmit = async (data) => {
+    // console.log(data);
+    // return
+
     console.log("Form submitted:", data);
     setSaving(true);
     setLastError();
@@ -57,7 +63,13 @@ export default function TransactionForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label className="mb-1">Type</Label>
-          <Select {...register("type")}>
+          <Select {...register("type", {
+            onChange: (e) => {
+              if (e.target.value != 'Expense') {
+                setValue('category', undefined)
+              }
+            }
+          })}>
             {types.map((type) => (
               <option key={type}>{type}</option>
             ))}
@@ -67,7 +79,8 @@ export default function TransactionForm() {
 
         <div>
           <Label className="mb-1">Category</Label>
-          <Select {...register("category")}>
+          <Select {...register("category")} disabled={type != 'Expense'}>
+            <option value=''>Select a category</option>
             {categories.map((category) => (
               <option key={category}>{category}</option>
             ))}

@@ -22,38 +22,13 @@ export default async function Page() {
       </section>
 
       <section className="mb-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
-
         {types.map(type =>
           <ErrorBoundary key={type} fallback={<div className="text-red-500">Cannot fetch {type} trend data</div>}>
             <Suspense fallback={<TrendFallback />}>
               <Trend type={type}/>
             </Suspense>
           </ErrorBoundary>
-         )}
-
-
-
-
-        {/* <ErrorBoundary fallback={<div className="text-red-500">Cannot fetch trend data</div>}>
-          <Suspense fallback={<TrendFallback />}>
-            <Trend type='Income'/>
-          </Suspense>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Suspense fallback={<TrendFallback />}>
-            <Trend type='Expense'/>
-          </Suspense>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Suspense fallback={<TrendFallback />}>
-            <Trend type='Saving'/>
-          </Suspense>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Suspense fallback={<TrendFallback />}>
-            <Trend type='Investment'/>
-          </Suspense>
-        </ErrorBoundary> */}
+        )}
       </section>
 
       <section className="flex justify-between items-center mb-8">
