@@ -2,37 +2,20 @@ import Separator from "@/components/separator";
 import TransactionItem from "@/components/transaction-item"
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import { createClient } from '@/lib/supabase/server'
+import { groupAndSumTransactionsByDate } from '@/lib/utils';
 
-// looping through all transactions and grouping them by date
-const groupAndSumTransactionsByDate = (transactions) => {
-
-  const grouped = {};
-  for(const transaction of transactions) {
-    const date = transaction.created_at.split('T')[0]
-    // this means that it will take the value from the DB : "created_at": "2023-03-15T23:00:00",
-    // split it in to parts at the "T and keeps the first part [0]... which is the date"
-    if (!grouped[date]) {
-      // if the date is not in the grouped object, it will create a new object,
-      grouped[date] = { transactions: [], amount: 0}
-      // with empty array and 0 amount, to store the transactions and the total amount
-    }
-    grouped[date].transactions.push(transaction)
-    //adds the transaction to the transactions array
-    const amount = transaction.type === 'Expense' ? -transaction.amount : transaction.amount
-    // if the transaction type is expense, it will convert to negative, otherwise as is...
-    grouped[date].amount += amount
-    // updates total amount for the date
-  }
-  return grouped
-}
-
-export default async function TransactionList() {
+export default async function TransactionList({range}) {
   //fetching transactions supabase
   const supabase = createClient()
-  const {data: transactions , error } = await supabase
-    .from('transactions')
-    .select('*')
-    .order('created_at', {ascending: false})
+
+  let { data: transactions, error } = await supabase
+    .rpc('fetch_transactions', {
+      // limit_arg,
+      // offset_arg,
+      range_arg: range
+    })
+    if (error) throw new Error("We can't fetch transactions")
+
 
   const grouped = groupAndSumTransactionsByDate(transactions);
 

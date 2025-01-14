@@ -35,10 +35,6 @@ export default function TransactionForm() {
   const type = watch('type')
 
   const onSubmit = async (data) => {
-    // console.log(data);
-    // return
-
-    console.log("Form submitted:", data);
     setSaving(true);
     setLastError();
 
