@@ -16,7 +16,5 @@ export default async function Trend({type, range}) {
 
   const amounts = data[0]
 
-
-
   return <BaseTrend type={type} amount={amounts.current_amount} prevAmount={amounts.previous_amount} />
 }

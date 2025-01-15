@@ -12,7 +12,7 @@ export default function TransactionSummaryItem({date, amount}) {
         {formattedAmount}
       </div>
 
-      <div className="min-w-[50px]"></div>
+      <div className="min-w-[100px]"></div>
     </div>
   )
 }
