@@ -4,10 +4,22 @@ import TransactionItem from "@/components/transaction-item"
 import TransactionSummaryItem from "@/components/transaction-summary-item";
 import { groupAndSumTransactionsByDate } from '@/lib/utils';
 import { useState } from "react";
+import Button from '@/components/button'
+import { fetchTransactions } from "@/lib/actions";
 
-export default function TransactionList({ initialTransactions }) {
-  const [transactions, setTransaction] = useState(initialTransactions)
+export default function TransactionList({ range, initialTransactions }) {
+  const [transactions, setTransactions] = useState(initialTransactions)
+  const [offset, setOffSet] = useState(initialTransactions.length);
   const grouped = groupAndSumTransactionsByDate(transactions);
+
+  const handleClick = async (e) => {
+    const nextTransactions = await fetchTransactions(range, offset, 10)
+    setOffSet(prevValue => prevValue + 10)
+    setTransactions(prevTransactions => [
+      ...prevTransactions,
+      ...nextTransactions
+    ])
+  }
 
   return (
     <div className="space-y-8">
@@ -25,6 +37,10 @@ export default function TransactionList({ initialTransactions }) {
           </div>
         )
       }
+      <div className="flex justify-center">
+        <Button variant='ghost' onClick={handleClick}>Load More</Button>
+      </div>
+
     </div>
   );
 }
