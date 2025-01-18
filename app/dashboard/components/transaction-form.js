@@ -7,11 +7,11 @@ import Button from "@/components/button";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "@/lib/validation";
-import Flatpickr from "react-flatpickr";
+// import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/dark.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createTransaction } from "@/lib/actions";
+import { createTransaction, updateTransaction } from "@/lib/actions";
 import FormError from "./form-error";
 
 export default function TransactionForm({initialData}) {
@@ -44,7 +44,10 @@ export default function TransactionForm({initialData}) {
 
     try {
       if(editing) {
-        //edit action
+        await updateTransaction(
+          initialData.id,
+          data
+        )
       } else {
         await createTransaction(data); // Update list so user can see it updated straight away
       }
