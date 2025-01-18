@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { createTransaction } from "@/lib/actions";
 import FormError from "./form-error";
 
-export default function TransactionForm() {
+export default function TransactionForm({initialData}) {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,10 @@ export default function TransactionForm() {
     formState: { errors }
   } = useForm({
     mode: "onTouched",
-    resolver: zodResolver(transactionSchema)
+    resolver: zodResolver(transactionSchema),
+    defaultValues: initialData ?? {
+      created_at: new Date().toISOString().split('T')[0]
+    }
   });
 
   const router = useRouter()
@@ -33,13 +36,18 @@ export default function TransactionForm() {
   const [isSaving, setSaving] = useState(false);
   const [lastError, setLastError] = useState()
   const type = watch('type')
+  const editing = Boolean(initialData)
 
   const onSubmit = async (data) => {
     setSaving(true);
     setLastError();
 
     try {
-      await createTransaction(data); // Update list so user can see it updated straight away
+      if(editing) {
+        //edit action
+      } else {
+        await createTransaction(data); // Update list so user can see it updated straight away
+      }
       router.push('/dashboard');  // redirect
     }
     catch (error) {
@@ -85,7 +93,7 @@ export default function TransactionForm() {
         </div>
 
         <div>
-          <Label className="mb-1">Date</Label>
+          {/* <Label className="mb-1">Date</Label>
           <Controller
             name="created_at"
             control={control}
@@ -110,12 +118,18 @@ export default function TransactionForm() {
                     autoComplete="off"
                     value={field.value || ''} // Ensure the value is controlled
                     onChange={field.onChange} // Ensure the onChange handler is passed down
+                    disabled={editing}
                   />
                 )}
               />
             )}
           />
+          <FormError error={errors.created_at} /> */}
+
+          <Label className='mb-1'>Amount</Label>
+          <Input {...register('created_at')} disabled={editing} />
           <FormError error={errors.created_at} />
+
         </div>
 
         <div>
