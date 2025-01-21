@@ -3,14 +3,15 @@
 import SubmitButton from "@/components/submit-button";
 import Input from "@/components/input";
 import { login } from "@/lib/actions";
-import {useFormState} from "react-dom"
+import { useActionState } from "react" // Updated import
+
 const initialState = {
   message: '',
   error: false
 }
 
 export default function LoginForm() {
-  const [state, formAction] = useFormState(login, initialState)
+  const [state, formAction] = useActionState(login, initialState) // Updated hook
   return(
     <form action={formAction} className="space-y-2">
       <Input type="email" placeholder="name@example.com"
@@ -25,3 +26,4 @@ export default function LoginForm() {
     </form>
   )
 }
+  
