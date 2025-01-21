@@ -10,6 +10,8 @@ export default async function PageHeader({className}) {
   const theme = useServerDarkMode()
   const supabase = createClient()
   const { data: { user }, error } = await supabase.auth.getUser()
+  console.log(user);
+  
 
 
   return (
