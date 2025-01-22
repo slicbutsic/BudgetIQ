@@ -1,9 +1,9 @@
 'use client'
-
 import SubmitButton from "@/components/submit-button";
 import Input from "@/components/input";
 import { login } from "@/lib/actions";
 import { useActionState } from "react" // Updated import
+
 
 const initialState = {
   message: '',
@@ -26,4 +26,3 @@ export default function LoginForm() {
     </form>
   )
 }
-  
