@@ -11,6 +11,7 @@ import { updateSettings } from "@/lib/actions";
 const initialState = {
   message: "",
   error: false,
+  errors: {}
 };
 
 export default function SettingsForm({ defaults }) {
@@ -24,14 +25,16 @@ export default function SettingsForm({ defaults }) {
       {state?.error && (
         <AlertError>{state?.message}</AlertError>
       )}
-      {!state?.error && state?.message.length > 0 && (
+      {!state?.error && state?.message?.length > 0 && (
         <AlertSuccess>{state?.message}</AlertSuccess>
       )}
 
       <Label htmlFor="fullName">User full name</Label>
       <Input type="text" name="fullName" id="fullName" placeholder="Full name" defaultValue={defaults?.fullName} />
+
       <Label htmlFor="defaultView">Default transactions view</Label>
       <DateRangeSelect name="defaultView" id="defaultView" defaultValue={defaults?.defaultView} />
+      
       <SubmitButton>Update Settings</SubmitButton>
     </form>
   );
