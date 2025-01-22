@@ -1,7 +1,9 @@
 'use client'
+
 import Link from 'next/link'
 import { User, Camera, Settings } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+
 export default function SideNav() {
   const pathname = usePathname()
   console.log(pathname)
