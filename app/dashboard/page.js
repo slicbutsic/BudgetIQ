@@ -12,10 +12,9 @@ import TransactionListWrapper from "./components/transaction-list-wrapper";
 import { createClient } from "@/lib/supabase/server"
 
 export default async function Page({searchParams}) {
-  const range = (await searchParams)?.range ?? 'last30days'
-
   const supabase = createClient()
-  // console.log(await supabase.auth.getUser())
+  const { data: { user: { user_metadata: settings } } } = await supabase.auth.getUser()
+  const range = (await searchParams)?.range ?? settings?.defaultView ?? 'last30days'
 
   return (
     <div className="space-y-8">
@@ -24,7 +23,7 @@ export default async function Page({searchParams}) {
           Summary
         </h1>
         <aside>
-          <Range />
+          <Range defaultView={settings?.defaultView}/>
         </aside>
       </section>
 
