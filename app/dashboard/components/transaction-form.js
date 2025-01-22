@@ -7,8 +7,6 @@ import Button from "@/components/button";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "@/lib/validation";
-// import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/dark.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createTransaction, updateTransaction } from "@/lib/actions";
@@ -96,39 +94,6 @@ export default function TransactionForm({initialData}) {
         </div>
 
         <div>
-          {/* <Label className="mb-1">Date</Label>
-          <Controller
-            name="created_at"
-            control={control}
-            defaultValue="" // Ensure the value is never undefined
-            rules={{ required: "Date is required" }}
-            render={({ field }) => (
-              <Flatpickr
-                {...field}
-                options={{
-                  dateFormat: "d/m/Y",
-                  allowInput: true,
-                  defaultDate: new Date(),
-                }}
-                onChange={(dates) => {
-                  // Update field value properly
-                  field.onChange(dates[0] ? dates[0].toLocaleDateString("en-GB") : "");
-                }}
-                render={(props, ref) => (
-                  <Input
-                    {...props}
-                    ref={ref}
-                    autoComplete="off"
-                    value={field.value || ''} // Ensure the value is controlled
-                    onChange={field.onChange} // Ensure the onChange handler is passed down
-                    disabled={editing}
-                  />
-                )}
-              />
-            )}
-          />
-          <FormError error={errors.created_at} /> */}
-
           <Label className='mb-1'>Amount</Label>
           <Input {...register('created_at')} disabled={editing} />
           <FormError error={errors.created_at?.message} />
