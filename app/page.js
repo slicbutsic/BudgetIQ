@@ -22,7 +22,7 @@ export default function Home() {
         <div className="mt-1 lg:w-1/2 mb-8 lg:mb-0 lg:pr-16 xl:pr-24">
           <p className="text-gray-800 dark:text-gray-300 mb-6 md:text-lg lg:text-lg xl:text-lg">
           Budget IQ is a powerful personal finance app designed to transform how
-          you manage and understand your money. It offers intelligent tracking, 
+          you manage and understand your money. It offers intelligent tracking,
           insightful analytics, and user-friendly tools to help you take control of your financial journey.
           </p>
 
@@ -39,10 +39,12 @@ export default function Home() {
         <div className="lg:w-1/2 relative w-full max-w-[600px] lg:max-w-[1200px] xl:max-w-[1600px] 2xl:max-w-[2000px]">
           <Image
             src="/images/budget-iq-web.png"
-            alt="Finance background"
+            alt="App dashboard view in web"
             width={2000}
             height={1000}
             layout="responsive"
+            priority
+            quality={50}
             className="rounded-lg object-cover"
           />
 
@@ -50,10 +52,12 @@ export default function Home() {
           <div className="absolute bottom-[0%] right-[0%] w-[40%] lg:w-[35%] xl:w-[30%]">
             <Image
               src="/images/budget-iq-mobile.png"
-              alt="Finance icon"
+              alt="App dashboard view in mobile"
               width={1000}
               height={900}
               layout="responsive"
+              priority
+              quality={50}
               className="rounded-lg object-cover"
             />
           </div>
