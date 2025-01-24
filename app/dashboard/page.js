@@ -9,11 +9,22 @@ import { ErrorBoundary } from "react-error-boundary";
 import { types } from "@/lib/consts";
 import Range from './components/range'
 import TransactionListWrapper from "./components/transaction-list-wrapper";
-import { createClient } from "@/lib/supabase/server"
+import { createClient } from "@/lib/supabase/server";
+
+
 
 export default async function Page({searchParams}) {
   const supabase = createClient()
-  const { data: { user: { user_metadata: settings } } } = await supabase.auth.getUser()
+  // const { data: { user: { user_metadata: settings } } } = await supabase.auth.getUser()
+
+
+  //********** */ This opens dashboard but does not confirm user //**************** */
+  const { data, error } = await supabase.auth.getUser()
+  const settings = data?.user?.user_metadata || {}
+  console.log('Auth data:', data)
+  // console.log('Auth error:', error)
+  // console.log('Current user:', data?.user)
+
   const range = (await searchParams)?.range ?? settings?.defaultView ?? 'last30days'
 
   return (
@@ -44,8 +55,6 @@ export default async function Page({searchParams}) {
           <div>Add</div>
         </Link>
       </section>
-
-
 
       <Suspense fallback={< TransactionListFallback /> }>
         <TransactionListWrapper range={range}/>
