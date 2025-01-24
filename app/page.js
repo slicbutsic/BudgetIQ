@@ -27,21 +27,21 @@ export default function Home() {
           </p>
 
           {/* uncomment this after update */}
-          {/* <Link href="/login">
+          <Link href="/login">
             <Button variant='outline' className="w-full">
               <div className="text-black dark:text-white px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 xl:px-8 xl:py-4 text-lg lg:text-xl xl:text-2xl rounded-lg transition-colors">
                 Get Started
               </div>
             </Button>
-          </Link> */}
+          </Link>
             {/* until here */}
 
             {/* delete this after update */}
-            <div variant='outline' className="w-full">
+            {/* <div variant='outline' className="w-full">
               <div className="text-black dark:text-white px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 xl:px-8 xl:py-4 text-lg lg:text-xl xl:text-2xl rounded-lg transition-colors">
                 Under update 🔨
               </div>
-            </div>
+            </div> */}
             {/* until here */}
         </div>
 

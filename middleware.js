@@ -10,9 +10,17 @@ export async function middleware(request) {
     return Response.redirect(new URL('/login', request.url))
   }
 
-  if (user && request.nextUrl.pathname.startsWith('/login')) {
-    return Response.redirect(new URL('/dashboard', request.url))
+  // if (user && request.nextUrl.pathname.startsWith('/login')) {
+  //   return Response.redirect(new URL('/dashboard', request.url))
+  // }
+
+  if (
+    user &&
+    (request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname === '/')
+  ) {
+    return Response.redirect(new URL('/dashboard', request.url));
   }
+
 
   return await updateSession(request)
 }
